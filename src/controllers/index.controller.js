@@ -38,14 +38,14 @@ const getLoginAuthentication = async (req, res) => {
       const responsePassword = response[1];
 
       if (responseEmail.rowCount <= 0) {
-        res.json({ message: "Este correo no esta registrado" });
+        res.send("Este correo no esta registrado");
         return;
       }
       if (responsePassword.rowCount <= 0) {
-        res.json({ message: "Contraseña incorrecta" });
+        res.send("Contraseña incorrecta");
         return;
       }
-      res.json({ message: "0" });
+      res.send("0");
     })
     .catch((err) => {
       console.log(err);
