@@ -27,8 +27,8 @@ const getUserById = async (req, res) => {
 };
 
 const getLoginAuthentication = async (req, res) => {
-  const email = req.params.email;
-  const password = req.params.password;
+  const email = req.query.email;
+  const password = req.query.password;
   const responseOne = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
   const responseTwo = await pool.query("SELECT * FROM users WHERE password = $1", [password]);
 
