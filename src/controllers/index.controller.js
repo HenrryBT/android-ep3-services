@@ -1,12 +1,18 @@
 const { response } = require("express");
 const { Pool } = require("pg");
 
+const DB_HOST = process.env.DB_HOST || "containers-us-west-106.railway.app";
+const DB_USER = process.env.DB_USER || "postgres";
+const DB_PASSWORD = process.env.DB_PASSWORD || "tc6kn9W61183eshM1LX6";
+const DB_NAME = process.env.DB_NAME || "railway";
+const DB_PORT = process.env.DB_PORT || 7974;
+
 const pool = new Pool({
-  user: "postgres",
-  host: "containers-us-west-106.railway.app",
-  password: "tc6kn9W61183eshM1LX6",
-  database: "railway",
-  port: "7974",
+  user: DB_USER,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: DB_PORT,
+  database: DB_NAME,
 });
 
 const getUsers = async (req, res) => {
