@@ -27,6 +27,7 @@ const getUserById = async (req, res) => {
 };
 
 const getLoginAuthentication = async (req, res) => {
+  const name = req.body;
   const email = req.query.email;
   const password = req.query.password;
   const responseOne = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
@@ -38,14 +39,25 @@ const getLoginAuthentication = async (req, res) => {
       const responsePassword = response[1];
 
       if (responseEmail.rowCount <= 0) {
-        res.send("Este correo no esta registrado");
+        res.json({
+          message: "Este correo no esta registrado",
+        });
         return;
       }
       if (responsePassword.rowCount <= 0) {
-        res.send("Contraseña incorrecta");
+        res.json({
+          message: "Contraseña incorrecta",
+        });
         return;
       }
-      res.send("0");
+
+      var string = JSON.stringify(responseEmail.rows[0]);
+      var objectValue = JSON.parse(string);
+
+      res.json({
+        message: "0",
+        name: objectValue["name"],
+      });
     })
     .catch((err) => {
       console.log(err);
