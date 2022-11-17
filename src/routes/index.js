@@ -11,7 +11,7 @@ const {
 
 router.get("/", getUsers);
 router.get("/finduser", getUserById);
-router.post("/login/", getLoginAuthentication);
+router.post("/login", getLoginAuthentication);
 router.post("/adduser", createUser);
 router.delete("/deleteuser", deleteUser);
 
